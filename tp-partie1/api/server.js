@@ -30,16 +30,16 @@ const categories = [
 ];
 
 let plats = [
-  { id: 1, nom: 'Romazava', description: 'Bouillon de brèdes et zébu', prix: '6000.00', categorie_id: 1, disponible: true },
-  { id: 2, nom: 'Ravitoto sy henakisoa', description: 'Feuilles de manioc pilées au porc', prix: '7000.00', categorie_id: 1, disponible: true },
-  { id: 3, nom: 'Henomby ritra', description: 'Zébu mijoté', prix: '8000.00', categorie_id: 1, disponible: true },
-  { id: 4, nom: 'Akoho sy voanio', description: 'Poulet au lait de coco', prix: '7500.00', categorie_id: 1, disponible: false },
-  { id: 5, nom: 'Soupe chinoise', description: 'Nouilles, légumes et viande', prix: '5000.00', categorie_id: 2, disponible: true },
-  { id: 6, nom: 'Lasopy', description: 'Soupe de légumes', prix: '3000.00', categorie_id: 2, disponible: true },
-  { id: 7, nom: 'Vary fotsy', description: 'Riz blanc', prix: '1000.00', categorie_id: 3, disponible: true },
-  { id: 8, nom: 'Lasary voatabia', description: 'Rougail de tomates', prix: '1500.00', categorie_id: 3, disponible: true },
-  { id: 9, nom: 'Ranovola', description: 'Eau de riz', prix: '500.00', categorie_id: 4, disponible: true },
-  { id: 10, nom: 'Jus de corossol', description: 'Pressé maison', prix: '2500.00', categorie_id: 4, disponible: true },
+  { id: 1, nom: 'Romazava', description: 'Bouillon de brèdes et zébu', prix: 6000.00, categorie_id: 1, disponible: true },
+  { id: 2, nom: 'Ravitoto sy henakisoa', description: 'Feuilles de manioc pilées au porc', prix: 7000.00, categorie_id: 1, disponible: true },
+  { id: 3, nom: 'Henomby ritra', description: 'Zébu mijoté', prix: 8000.00, categorie_id: 1, disponible: true },
+  { id: 4, nom: 'Akoho sy voanio', description: 'Poulet au lait de coco', prix: 7500.00, categorie_id: 1, disponible: false },
+  { id: 5, nom: 'Soupe chinoise', description: 'Nouilles, légumes et viande', prix: 5000.00, categorie_id: 2, disponible: true },
+  { id: 6, nom: 'Lasopy', description: 'Soupe de légumes', prix: 3000.00, categorie_id: 2, disponible: true },
+  { id: 7, nom: 'Vary fotsy', description: 'Riz blanc', prix: 1000.00, categorie_id: 3, disponible: true },
+  { id: 8, nom: 'Lasary voatabia', description: 'Rougail de tomates', prix: 1500.00, categorie_id: 3, disponible: true },
+  { id: 9, nom: 'Ranovola', description: 'Eau de riz', prix: 500.00, categorie_id: 4, disponible: true },
+  { id: 10, nom: 'Jus de corossol', description: 'Pressé maison', prix: 2500.00, categorie_id: 4, disponible: true },
 ];
 
 let commandes = [];

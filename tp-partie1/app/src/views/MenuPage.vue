@@ -84,7 +84,7 @@ async function charger() {
   chargement.value = true;
   erreur.value = null;
   try {
-    plats.value = await api.getPlats();
+    plats.value = api.getPlats();
     categories.value = await api.getCategories();
   } catch (e) {
     erreur.value = "Impossible de joindre l'API. Est-elle lancée ?";

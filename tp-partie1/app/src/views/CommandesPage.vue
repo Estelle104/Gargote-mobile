@@ -39,7 +39,7 @@ import {
   IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonList, IonItem,
   IonLabel, IonBadge, IonRefresher, IonRefresherContent, onIonViewWillEnter,
 } from '@ionic/vue';
-import { getCommandes } from '@/api';
+import { getCommandes } from '@/services/api';
 import { formatDate } from '@/utils/format'; // adapte le chemin
 
 const commandes = ref([]);

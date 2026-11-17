@@ -5,8 +5,9 @@ import type { Plat } from './02-interfaces.ts';
 
 // A. Paramètre par défaut.
 //    formatPrix(500) -> "500 Ar"      formatPrix(2, '€') -> "2 €"
-export function formatPrix() {
+export function formatPrix(montant: number, devise: string = 'Ar') {
   // TODO : ajoutez les paramètres (montant, devise valant 'Ar' par défaut)
+  return `${montant} ${devise}`;
 }
 
 // B. Paramètre facultatif.
