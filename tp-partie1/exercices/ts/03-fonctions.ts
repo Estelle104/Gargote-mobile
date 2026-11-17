@@ -13,8 +13,15 @@ export function formatPrix(montant: number, devise: string = 'Ar') {
 // B. Paramètre facultatif.
 //    Renvoie les plats dont le nom contient « mot » (sans tenir compte des majuscules).
 //    Si seulementDisponibles vaut true, ne garde que les plats disponibles.
-export function rechercher() {
+export function rechercher(mot: string, plats: Plat[], seulementDisponibles?: boolean): Plat[] {
   // TODO : (plats, mot, seulementDisponibles?) -> tableau de Plat
+  const plat_res = [];
+  for(const p of plats){
+    if(p.nom.toLowerCase() === mot.toLowerCase() && seulementDisponibles) {
+      plat_res.push(p);
+    }
+  } 
+  return plat_res;
 }
 
 // C. Type union et rétrécissement (narrowing).
@@ -22,4 +29,9 @@ export function rechercher() {
 //    Utilisez  typeof valeur === 'string'  pour distinguer les deux cas.
 export function versNombre(valeur: number | string): number {
   // TODO
+  if (typeof valeur === 'string') {
+    return parseFloat(valeur);
+  } else {
+    return valeur;
+  }
 }
