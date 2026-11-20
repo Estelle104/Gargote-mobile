@@ -55,6 +55,7 @@ import { usePanier } from '@/composables/usePanier';
 import { ref } from 'vue';
 import { formatAriary } from '@/utils/format';
 import api from '@/services/api';
+import type { NouvelleCommande } from '@/types/gargote';
 
 const { lignes, total, changerQuantite, vider } = usePanier();
 const erreurTable = ref('');
@@ -127,9 +128,9 @@ async function envoyer() {
 
   try {
     // const commande = lignes.value.map((l) => ({ plat_id: l.plat.id, quantite: l.quantite }));
-    const commande = {
+    const commande : NouvelleCommande = {
       table: Number(table.value),
-      lignes: lignes.value.map((l) => ({ plat_id: l.plat.id, quantite: l.quantite }))
+      ligne: lignes.value.map((l) => ({ plat: l.plat.id, quantite: l.quantite }))
     };
     
     await api.createCommande(commande);
@@ -147,7 +148,7 @@ async function envoyer() {
     ionrouter.navigate('/tabs/commandes', 'forward', 'replace');
   } catch (e) {
     await loading.dismiss();
-    if (e.status === 422) {
+    if (e && typeof e === 'object' && 'statut' in e && e.statut === 422) {
       erreurTable.value = 'Numéro de table invalide';
     } else {
       console.error('Erreur lors de l\'envoi de la commande :', e);

@@ -13,3 +13,45 @@ export interface Plat {
   disponible: boolean;
   categorie: Categorie | null;
 }
+
+
+export type StatutCommande = 'en_attente' | 'en_cours' | 'servie' | 'annulee';
+
+export interface Commande {
+    id: number;
+    table: number;
+    date: string;
+    statut: StatutCommande;
+    total: string;
+    lignes: LigneCommande[];
+}
+
+export interface LigneCommande {
+    plat_id: number;
+    nom: string;
+    quantite: number;
+    prix_unitaire: number;
+    sous_total: string;
+}
+
+export interface Ligne {
+    plat: Plat;
+    quantite: number;
+}
+
+export interface NouvelleLigne {
+    plat: number;
+    quantite: number;
+}
+
+export interface NouvelleCommande {
+    table: number;
+    ligne: NouvelleLigne[];
+}
+
+
+export interface Erreur extends Error {
+    statut?: number;
+    details?: Record<string, unknown>;
+    value?: unknown;
+}

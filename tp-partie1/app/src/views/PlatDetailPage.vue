@@ -39,17 +39,18 @@ import { ref, onMounted } from 'vue';
 import { usePanier } from '@/composables/usePanier';
 import { toastController } from '@ionic/vue';
 import { formatAriary } from '@/utils/format';
+import type { Plat, Erreur } from '@/types/gargote';
 
 const route = useRoute();
 const ionrouter = useIonRouter();
 // ionrouter.navigate('tabs/commandes', 'forward', 'replace')
-const idplat = route.params.id;
+const idplat  = Number(route.params.id);
 
-const plat = ref(null);
+const plat = ref<Plat | null>(null);
 const erreur = ref('');
 const chargement = ref(true);
 
-const riz = ref(null);
+const riz = ref(<Plat | null>(null));
 
 const { ajouter } = usePanier();
 
@@ -60,7 +61,8 @@ async function chargerPlat() {
         chargement.value = false;
 
     } catch (e) {
-        if (e.status || e.message === 404) {
+        const erreur = e as Erreur;
+        if (erreur.statut === 404) {
             erreur.value = "Ce plat n'existe pas";
         } else {
             erreur.value = "Erreur lors du chargement du plat";
@@ -71,7 +73,7 @@ async function chargerPlat() {
 }
 
 
-async function ajouterAuPanier(plat) {
+async function ajouterAuPanier(plat : Plat) {
     try {
         ajouter(plat);
         const toast = await toastController.create({

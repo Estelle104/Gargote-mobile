@@ -6,8 +6,8 @@
 //    Elle doit marcher pour un tableau de Plat, de nombres, de textes...
 //    premier([3, 4]) a le type  number | undefined
 //    premier(plats)  a le type  Plat | undefined
+// export function premier(liste: any[]): any | undefined {
 export function premier<T>(liste: T[]): T | undefined {
-export function premier(liste: any[]): any | undefined {
   // TODO : remplacez les any par un paramètre de type <T>
   return liste[0];
 }

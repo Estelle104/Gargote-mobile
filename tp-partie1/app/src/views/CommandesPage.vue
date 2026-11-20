@@ -24,8 +24,8 @@
             <p>{{ detailLignes(c) }}</p>
             <p><strong>Total : {{ c.total }} Ar</strong></p>
           </ion-label>
-          <ion-badge slot="end" :color="couleurStatut(c.statut)">
-            {{ c.statut }}
+          <ion-badge slot="end" :color="infoStatut(c.statut).couleur">
+            {{ infoStatut(c.statut).libelle }}
           </ion-badge>
         </ion-item>
       </ion-list>
@@ -35,14 +35,16 @@
 
 <script setup  lang="ts">
 import { ref } from 'vue';
+import type { Commande, Ligne, LigneCommande, StatutCommande } from '@/types/gargote';
 import {
   IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonList, IonItem,
   IonLabel, IonBadge, IonRefresher, IonRefresherContent, onIonViewWillEnter,
+  type RefresherCustomEvent,
 } from '@ionic/vue';
-import { getCommandes } from '@/services/api';
+import api from '@/services/api';
 import { formatDate } from '@/utils/format'; // adapte le chemin
 
-const commandes = ref([]);
+const commandes = ref(<Commande[]>[]);
 const chargement = ref(false);
 const erreur = ref('');
 
@@ -50,7 +52,7 @@ async function charger() {
   chargement.value = true;
   erreur.value = '';
   try {
-    commandes.value = await getCommandes();
+    commandes.value = await api.getCommandes();
   } catch (e) {
     erreur.value = 'Impossible de charger les commandes.';
   } finally {
@@ -58,15 +60,15 @@ async function charger() {
   }
 }
 
-async function rafraichir(event) {
+async function rafraichir(event : RefresherCustomEvent) {
   await charger();
   event.target.complete();
 }
-function detailLignes(c) {
+function detailLignes(c : Commande) {
   return c.lignes.map(l => `${l.quantite} × ${l.nom}`).join(', ');
 }
 
-function formatTotal(total) {
+function formatTotal(total: number) {
   return Number(total).toLocaleString('fr-FR') + ' Ar';
 }
 
@@ -78,7 +80,7 @@ const STATUTS = {
 };
 
 
-function infoStatut(statut) {
+function infoStatut(statut: StatutCommande) {
   return STATUTS[statut] || { libelle: statut, couleur: 'medium' };
 }
 

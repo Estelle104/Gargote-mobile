@@ -40,8 +40,8 @@
           <!-- <ion-item v-for="plat in platsFiltres" :key="plat.id" "> -->
           <!-- <a href="/tabs/menu/${plat.id}"></a> -->
           <ion-label>
-            <h2>{{ plat.nom }}</h2>
-            <p>{{ plat.categorie.nom }}</p>
+            <h2>{{ plat.nom }}cs</h2>
+            <p>{{ plat.categorie?.nom }}</p>
             <p>{{ plat.description }}</p>
             <strong><ion-text color="primary">Prix :{{ plat.prix }}</ion-text> </strong>
           </ion-label>
@@ -65,26 +65,28 @@ import {
   IonPage, IonHeader, IonToolbar, IonTitle, IonContent,
   IonList, IonItem, IonLabel, IonNote, IonSpinner, IonText, IonButton, IonSearchbar, IonBadge, IonSegment, IonSegmentButton,
   IonRefresher, IonRefresherContent, onIonViewWillEnter, onIonViewDidLeave, IonIcon,
-  toastController
+  toastController,
+  type RefresherCustomEvent
 } from '@ionic/vue';
 
 import api from '@/services/api';
 import { usePanier } from '@/composables/usePanier';
 import { addCircleOutline } from 'ionicons/icons';
+import type { Categorie, Plat  } from '@/types/gargote';
 // import { formatAriary } from '@/utils/format';
 
-const plats = ref([]);
+const plats = ref(<Plat[]>[]);
 const chargement = ref(true);
-const erreur = ref(null);
+const erreur = ref('');
 const recherche = ref('');
-const categories = ref([]);
+const categories = ref(<Categorie[]>[]);
 const categorieChoisie = ref('toutes');
 
 async function charger() {
   chargement.value = true;
-  erreur.value = null;
+  erreur.value = ''; 
   try {
-    plats.value = api.getPlats();
+    plats.value = await api.getPlats(categorieChoisie.value );
     categories.value = await api.getCategories();
   } catch (e) {
     erreur.value = "Impossible de joindre l'API. Est-elle lancée ?";
@@ -105,13 +107,13 @@ const platsFiltres = computed(() => {
 
   if (catId && rech) {
     return plats.value.filter((pl) =>
-      pl.categorie.id === catId &&
+      pl.categorie?.id === catId &&
       (pl.nom.toLowerCase().includes(rech) || pl.description.toLowerCase().includes(rech))
     );
   }
 
   if (catId) {
-    return plats.value.filter((pl) => pl.categorie.id === catId);
+    return plats.value.filter((pl) => pl.categorie?.id === catId);
   }
 
   return plats.value.filter((pl) =>
@@ -119,12 +121,12 @@ const platsFiltres = computed(() => {
   );
 });
 
-async function rafraichir(event) {
+async function rafraichir(event: RefresherCustomEvent) {
   await charger();
   event.target.complete(); // arrête l'animation
 }
 
-async function ajouterAuPanier(plat) {
+async function ajouterAuPanier(plat : Plat) {
   try {
     await usePanier().ajouter(plat);
     const toast = await toastController.create({

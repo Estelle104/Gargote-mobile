@@ -1,5 +1,7 @@
 import { createApp } from 'vue';
 import { IonicVue } from '@ionic/vue';
+// App.vue is handled by the Vue bundler; its module declaration is unavailable to TypeScript here.
+// @ts-expect-error Vue SFC module declaration is provided by the build tool.
 import App from './App.vue';
 import router from './router';
 
