@@ -30,6 +30,15 @@ export function messageErreur(e: unknown): string {
 //    ou [] si source() ne renvoie pas un tableau.
 export async function chargerPlats(source: () => Promise<unknown>): Promise<Plat[]> {
   // TODO
-
+  try{
+    const data = await source();
+    if(!Array.isArray(data)) {
+      return [];
+    }
+    return data.filter(estPlat);
+  } catch(e) {
+    console.error(messageErreur(e));
+    return [];
+  }
 
 }

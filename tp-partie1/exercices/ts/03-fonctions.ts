@@ -13,11 +13,12 @@ export function formatPrix(montant: number, devise: string = 'Ar') {
 // B. Paramètre facultatif.
 //    Renvoie les plats dont le nom contient « mot » (sans tenir compte des majuscules).
 //    Si seulementDisponibles vaut true, ne garde que les plats disponibles.
-export function rechercher(mot: string, plats: Plat[], seulementDisponibles?: boolean): Plat[] {
+export function rechercher( plats: Plat[], mot: string, seulementDisponibles?: boolean): Plat[] {
   // TODO : (plats, mot, seulementDisponibles?) -> tableau de Plat
   const plat_res = [];
   for(const p of plats){
-    if(p.nom.toLowerCase() === mot.toLowerCase() && seulementDisponibles) {
+    const dispo = p.disponible || !seulementDisponibles;
+    if(p.nom.toLowerCase().includes(mot.toLowerCase()) && dispo) {
       plat_res.push(p);
     }
   } 

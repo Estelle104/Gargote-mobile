@@ -8,8 +8,8 @@ import { estPlat, messageErreur, chargerPlats } from './05-async.ts';
 
 const plats: Plat[] = [
   romazava,
-  { id: 4, nom: 'Akoho sy voanio', prix: '7500.00', disponible: false, categorie: null },
-  { id: 6, nom: 'Lasopy', prix: '3000.00', disponible: true, categorie: null },
+  { id: 4, nom: 'Akoho sy voanio', prix: 7500.00, disponible: false, categorie: null },
+  { id: 6, nom: 'Lasopy', prix: 3000.00, disponible: true, categorie: null },
 ];
 
 let reussis = 0;
