@@ -33,7 +33,7 @@
   </ion-page>
 </template>
 
-<script setup>
+<script setup  lang="ts">
 import { ref } from 'vue';
 import {
   IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonList, IonItem,

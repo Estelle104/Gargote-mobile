@@ -43,7 +43,7 @@
   </ion-page>
 </template>
 
-<script setup>
+<script setup  lang="ts">
 import {
   IonPage, IonHeader, IonToolbar, IonTitle, IonButtons, IonButton, IonContent,
   IonText, IonList, IonItem, IonLabel, IonIcon, IonNote, IonInput,

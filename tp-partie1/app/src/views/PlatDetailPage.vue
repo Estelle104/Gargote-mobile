@@ -27,7 +27,7 @@
 
 </template>
 
-<script setup>
+<script setup  lang="ts">
 import {
     IonPage, IonHeader, IonToolbar, IonTitle, IonButtons, IonBackButton, IonContent,
     IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCardContent, IonLabel, IonSpinner,

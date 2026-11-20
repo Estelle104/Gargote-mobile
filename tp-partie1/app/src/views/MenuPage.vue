@@ -59,7 +59,7 @@
   </ion-page>
 </template>
 
-<script setup>
+<script setup  lang="ts">
 import { ref, onMounted, computed, onUnmounted } from 'vue';
 import {
   IonPage, IonHeader, IonToolbar, IonTitle, IonContent,

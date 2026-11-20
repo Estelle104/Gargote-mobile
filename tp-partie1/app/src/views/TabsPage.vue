@@ -24,7 +24,7 @@
   </ion-page>
 </template>
 
-<script setup>
+<script setup  lang="ts">
 import { IonPage, IonTabs, IonRouterOutlet, IonTabBar, IonTabButton, IonIcon, IonLabel } from '@ionic/vue';
 import { restaurantOutline, cartOutline, receiptOutline } from 'ionicons/icons';
 </script>
