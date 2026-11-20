@@ -16,7 +16,7 @@
                     <ion-card-subtitle>{{ plat?.categorie?.nom }}</ion-card-subtitle>
                     <ion-card-title>{{ plat?.nom }}</ion-card-title>
                     <ion-card-content>{{ plat?.description }}
-                        <p v-if="riz"> Avec du riz : {{ formatAriary(plat.prix + riz.prix) }} </p>
+                        <p v-if="riz"> Avec du riz : {{ formatAriary(Number(plat.prix) + Number(riz.prix)) }} </p>
                         <ion-button slot="end" fill="clear" :disabled="!plat.disponible"
                             @click.stop.prevent="ajouterAuPanier(plat)" expand="block">Ajouter au panier</ion-button>
                     </ion-card-content>

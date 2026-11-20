@@ -1,5 +1,5 @@
 /** 6000 ou "6000.00"  ->  "6 000 Ar" */
-export function formatAriary(montant: number | string): string {
+export function formatAriary(montant: number): string {
   const valeur = typeof montant === 'string' ? Number(montant) : montant;
   return new Intl.NumberFormat('fr-FR', { maximumFractionDigits: 0 }).format(valeur) + ' Ar';
 }
