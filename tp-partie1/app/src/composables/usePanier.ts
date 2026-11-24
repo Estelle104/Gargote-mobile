@@ -1,4 +1,5 @@
-import type { Plat, Ligne } from '@/types/gargote';
+import type { Plat, Ligne, LignePanier } from '@/types/gargote';
+import { Preferences } from '@capacitor/preferences';
 import { ref, computed } from 'vue';
 
 // Déclaré EN DEHORS de la fonction : un seul panier pour toute l'application
@@ -43,4 +44,20 @@ export function usePanier() {
     }); total
 
     return { lignes, ajouter, changerQuantite, vider, nombreArticles, total };
+
+
+
+    function estPanier(x : unknown) : x is LignePanier[] {
+        if (!Array.isArray(x)) {
+            return false;
+        }
+        return x.every((item) => typeof item.id === 'number' && typeof item.plat === 'number' && typeof item.quantite === 'number' && typeof item.prix === 'string');
+    }
+
+    function restaurerPanier() : Promise<void> {
+        const panier = Preferences.get({ key: 'panier'});
+
+        
+    }
 }
+

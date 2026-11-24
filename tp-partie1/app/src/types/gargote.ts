@@ -49,6 +49,13 @@ export interface NouvelleCommande {
     ligne: NouvelleLigne[];
 }
 
+export interface LignePanier {
+    id : number;
+    plat: number;
+    quantite: number;
+    prix: string;
+}
+
 
 export interface Erreur extends Error {
     statut?: number;
